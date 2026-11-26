@@ -84,6 +84,18 @@ header{position:sticky;top:env(safe-area-inset-top,0px);z-index:5;background:col
 .links .btn{padding:9px 18px;font-size:15px;color:var(--bg)}
 .links{gap:clamp(10px,2.4vw,28px)}
 .links a{white-space:nowrap}
+/* Menú hamburguesa (celular y pantallas angostas) */
+.menu-btn{display:none;flex-direction:column;justify-content:center;align-items:center;gap:5px;width:42px;height:42px;border:1.5px solid var(--line);border-radius:50%;background:transparent;cursor:pointer;padding:0;flex:none}
+.menu-btn span{display:block;width:18px;height:2px;border-radius:2px;background:var(--fg);transition:transform .2s ease,opacity .2s ease}
+.menu-btn[aria-expanded="true"] span:nth-child(1){transform:translateY(7px) rotate(45deg)}
+.menu-btn[aria-expanded="true"] span:nth-child(2){opacity:0}
+.menu-btn[aria-expanded="true"] span:nth-child(3){transform:translateY(-7px) rotate(-45deg)}
+.menu-movil{border-top:1px solid var(--line);background:var(--bg)}
+.menu-movil .wrap{display:flex;flex-direction:column;padding-block:6px 18px}
+.menu-movil a:not(.btn){font-family:var(--font-display);font-weight:500;font-size:20px;text-decoration:none;color:var(--fg);padding:13px 0;border-bottom:1px solid var(--line)}
+.menu-movil .btn{align-self:flex-start;margin-top:16px}
+@media (max-width:1040px){.menu-btn{display:inline-flex}}
+@media (min-width:1041px){.menu-movil{display:none!important}}
 @media (max-width:1040px){.links a:not(.btn){display:none}}
 .nav-right{display:flex;align-items:center;gap:clamp(10px,2vw,22px)}
 .lang{display:inline-flex;border:1.5px solid var(--line);border-radius:999px;padding:3px;gap:2px}
