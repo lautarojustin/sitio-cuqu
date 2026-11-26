@@ -136,7 +136,7 @@ header{position:sticky;top:env(safe-area-inset-top,0px);z-index:5;background:col
 @keyframes flota{0%,100%{transform:translateY(0)}50%{transform:translateY(-14px)}}
 @keyframes gira{to{transform:rotate(360deg)}}
 @media (max-width:820px){.hero-grid{grid-template-columns:1fr}.hero-art{max-width:380px;width:100%;margin-inline:auto;order:-1}}
-@media (max-width:600px){.hero-art{display:none}}
+@media (max-width:600px){.hero-art{display:none}.hero .ctas{flex-wrap:nowrap;gap:8px;margin-top:28px}.hero .ctas .btn{flex:1 1 auto;justify-content:center;white-space:nowrap;font-size:14px;padding:10px 12px}}
 
 
 /* Quiénes */
@@ -187,7 +187,7 @@ header{position:sticky;top:env(safe-area-inset-top,0px);z-index:5;background:col
 .costos .btn{border-color:var(--tinta-amarilla);color:var(--tinta-amarilla)}
 .costos .btn:hover{background:var(--tinta-amarilla);color:var(--amarillo)}
 @media (max-width:900px){.modos{grid-template-columns:1fr 1fr}.modo:nth-child(3){padding-left:0;border-left:0}.modo:nth-child(n+3){border-top:1px solid var(--line)}}
-@media (max-width:560px){.modos{grid-template-columns:1fr}.modo,.modo + .modo{padding-left:0;border-left:0}.modo + .modo{border-top:1px solid var(--line)}}
+@media (max-width:560px){.modos{grid-template-columns:1fr}.modo,.modo + .modo{padding-left:0;border-left:0}.modo + .modo{border-top:1px solid var(--line)}.modo,.modo + .modo{padding-block:24px}}
 
 /* Para quiénes */
 .para{background:var(--verde);color:var(--sobre-color);padding-block:clamp(30px,3.6vw,48px)}
@@ -311,18 +311,16 @@ footer{border-top:1px solid var(--line);padding-block:32px;font-size:14px;color:
       <p class="eyebrow" data-en="About us">Quiénes somos</p>
       <div class="quienes-grid">
         <div>
-          <h2 data-en="An open and flexible civil association">Una asociación civil abierta y flexible</h2>
-          <p class="lead" data-en="We are a non-profit civil association, currently being set up. We work from Buenos Aires, for the Global South. Everything we receive goes to sustaining the organization and our work with the groups we support.">Somos una asociación civil sin fines de lucro, en formación. Trabajamos desde Buenos Aires, para el sur global. Todo lo que ingresa se usa para sostener la organización y el trabajo con las organizaciones que acompañamos.</p>
+          <h2 data-en="We do organizational architecture">Hacemos arquitectura de organizaciones</h2>
+          <p class="lead" data-en="We are a non-profit civil association, currently being set up. We work from the Autonomous City of Buenos Aires, for the Global South.">Somos una asociación civil sin fines de lucro, en formación. Trabajamos desde la Ciudad Autónoma de Buenos Aires, para el sur global.</p>
           <p class="sub-lead" data-en="Our team comes from years of work in LGBTIQ+, gender, climate and human rights organizations. We use artificial intelligence as a working tool, so teams spend less time on paperwork and more on what matters.">Venimos de años de trabajo en organizaciones LGBTIQ+, de género, clima y derechos humanos. Usamos la inteligencia artificial como herramienta de trabajo, para que los equipos dediquen menos tiempo a lo administrativo y más a lo que importa.</p>
           <div class="datos">
-            <div class="dato"><strong>+10</strong><span data-en="years working in the social sector">años de trabajo en el sector social</span></div>
-            <div class="dato"><strong style="color:var(--naranja-texto)">20</strong><span data-en="years ahead: the horizon we plan every project with">años hacia adelante: la mirada con la que pensamos cada proyecto</span></div>
-          </div>
+            <div class="dato"><strong>+10</strong><span data-en="years working in the social sector">años de trabajo en el sector social</span></div>          </div>
         </div>
         <div class="vm">
           <article>
             <h3><svg width="22" height="22" style="color:var(--azul)" aria-hidden="true"><use href="#pentagono"/></svg><span data-en="Vision">Visión</span></h3>
-            <p data-en="A strong, diverse and sustainable civil society, with organizations that shape their future and defend their rights.">Una sociedad civil fuerte, diversa y sostenible, con organizaciones que transforman su futuro y defienden sus derechos.</p>
+            <p data-en="A strong, diverse and sustainable civil society, with organizations that shape their future and defend the rights of their communities.">Una sociedad civil fuerte, diversa y sostenible, con organizaciones que transforman su futuro y defienden los derechos de sus comunidades.</p>
           </article>
           <article>
             <h3><svg width="22" height="22" style="color:var(--verde)" aria-hidden="true"><use href="#trebol"/></svg><span data-en="Mission">Misión</span></h3>
@@ -416,8 +414,7 @@ footer{border-top:1px solid var(--line);padding-block:32px;font-size:14px;color:
     <div class="wrap para-grid">
       <div>
         <p class="eyebrow" data-en="Who it's for">Para quiénes</p>
-        <h2 style="margin-top:14px" data-en="For those who build community">Para quienes construyen comunidad</h2>
-        <p class="lead" data-en="We aren't defined by a territory. We work with organizations and collectives in their own contexts and communities.">No nos define un territorio. Trabajamos con las organizaciones y colectivos en sus propios contextos y comunidades.</p>
+        <h2 style="margin-top:14px" data-en="We work for those who build community">Trabajamos para quienes construyen comunidad</h2>
       </div>
       <div>
         <div class="bloque">
