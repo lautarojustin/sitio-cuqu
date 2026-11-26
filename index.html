@@ -143,6 +143,7 @@ header{position:sticky;top:env(safe-area-inset-top,0px);z-index:5;background:col
 .f5{width:24%;left:0;top:68%;animation:flota 6s ease-in-out infinite 1.2s}
 @keyframes flota{0%,100%{transform:translateY(0)}50%{transform:translateY(-14px)}}
 @keyframes gira{to{transform:rotate(360deg)}}
+@media (min-width:821px){.hero h1{font-size:clamp(44px,5.2vw,76px)}.hero-art{width:100%;max-width:min(100%,52vh,480px);justify-self:center}}
 @media (max-width:820px){.hero-grid{grid-template-columns:1fr}.hero-art{max-width:380px;width:100%;margin-inline:auto;order:-1}}
 @media (max-width:600px){.hero-art{display:none}.hero .ctas{flex-wrap:nowrap;gap:8px;margin-top:28px}.hero .ctas .btn{flex:1 1 auto;justify-content:center;white-space:nowrap;font-size:14px;padding:10px 12px}}
 
