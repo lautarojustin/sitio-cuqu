@@ -101,7 +101,8 @@ header{position:sticky;top:env(safe-area-inset-top,0px);z-index:5;background:col
 .btn-ghost:hover{background:var(--fg);color:var(--bg)}
 .links .btn{padding:9px 18px;font-size:15px;color:var(--bg)}
 .links{gap:clamp(10px,2.4vw,28px)}
-@media (max-width:860px){.links a:not(.btn){display:none}}
+.links a{white-space:nowrap}
+@media (max-width:1040px){.links a:not(.btn){display:none}}
 .nav-right{display:flex;align-items:center;gap:clamp(10px,2vw,22px)}
 .lang{display:inline-flex;border:1.5px solid var(--line);border-radius:999px;padding:3px;gap:2px}
 .lang button{font:inherit;font-family:var(--font-display);font-weight:600;font-size:14px;letter-spacing:.04em;border:0;background:transparent;color:var(--muted);padding:5px 11px;border-radius:999px;cursor:pointer}
