@@ -202,7 +202,9 @@ header{position:sticky;top:env(safe-area-inset-top,0px);z-index:5;background:col
 /* Para quiénes */
 .para{background:var(--verde);color:var(--sobre-color);padding-block:clamp(30px,3.6vw,48px)}
 .hero{border-bottom:1px solid var(--line)}
-.para-grid{display:grid;grid-template-columns:1fr 1fr;gap:clamp(32px,6vw,80px)}
+.para-grid{display:grid;grid-template-columns:1fr 1fr;gap:24px clamp(32px,6vw,80px);align-items:center}
+.para .chips{margin-top:0}
+.temas{background:var(--naranja-texto)}
 .para h2{font-size:var(--h2-seccion);overflow-wrap:break-word}
 .para .eyebrow{color:inherit}
 .para p.lead{color:inherit;margin-top:20px}
@@ -433,20 +435,21 @@ footer{border-top:1px solid var(--line);padding-block:28px 18px;color:var(--mute
         <p class="eyebrow" data-en="Who it's for">Para quiénes</p>
         <h2 style="margin-top:14px" data-en="We work for those who build community">Trabajamos para quienes construyen comunidad</h2>
       </div>
+      <ul class="chips">
+        <li data-en="Civil associations">Asociaciones civiles</li><li data-en="Foundations">Fundaciones</li><li data-en="Collectives">Colectivos</li><li data-en="Movements">Movimientos</li><li data-en="Cooperatives">Cooperativas</li><li data-en="Networks">Redes</li><li data-en="Activists">Activistas</li><li data-en="Social enterprises">Emprendimientos sociales</li>
+      </ul>
+    </div>
+  </section>
+
+  <section class="para temas" id="temas">
+    <div class="wrap para-grid">
       <div>
-        <div class="bloque">
-          <h3 data-en="Organizations">Organizaciones</h3>
-          <ul class="chips">
-            <li data-en="Civil associations">Asociaciones civiles</li><li data-en="Foundations">Fundaciones</li><li data-en="Collectives">Colectivos</li><li data-en="Movements">Movimientos</li><li data-en="Cooperatives">Cooperativas</li><li data-en="Networks">Redes</li><li data-en="Activists">Activistas</li><li data-en="Social enterprises">Emprendimientos sociales</li>
-          </ul>
-        </div>
-        <div class="bloque">
-          <h3 data-en="Issues">Temas</h3>
-          <ul class="chips">
-            <li data-en="Climate">Clima</li><li data-en="Gender">Género</li><li data-en="Education">Educación</li><li data-en="Technology">Tecnología</li><li data-en="Justice">Justicia</li><li data-en="Housing">Vivienda</li><li data-en="Culture">Cultura</li><li data-en="Work">Trabajo</li><li data-en="Health">Salud</li><li data-en="Migration">Migración</li>
-          </ul>
-        </div>
+        <p class="eyebrow" data-en="What we work on">En qué trabajamos</p>
+        <h2 style="margin-top:14px" data-en="Issues that move us">Temas que nos mueven</h2>
       </div>
+      <ul class="chips">
+        <li data-en="Climate">Clima</li><li data-en="Gender">Género</li><li data-en="Education">Educación</li><li data-en="Technology">Tecnología</li><li data-en="Justice">Justicia</li><li data-en="Housing">Vivienda</li><li data-en="Culture">Cultura</li><li data-en="Work">Trabajo</li><li data-en="Health">Salud</li><li data-en="Migration">Migración</li>
+      </ul>
     </div>
   </section>
 
