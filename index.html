@@ -1,0 +1,538 @@
+<!doctype html>
+<html lang="es">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<title>Cuqu — Arquitectura de organizaciones</title>
+<meta name="claude:viewport-fit-sides" content="cover">
+<link rel="icon" type="image/png" sizes="32x32" href="favicon-32.png">
+<link rel="icon" type="image/png" sizes="512x512" href="favicon-512.png">
+<link rel="apple-touch-icon" href="apple-touch-icon.png">
+<meta name="description" content="Cuqu acompaña a organizaciones y colectivos a ordenar, ejecutar, financiar y vincular sus proyectos. Desde Buenos Aires, para el sur global.">
+<meta property="og:type" content="website">
+<meta property="og:title" content="Cuqu — Arquitectura de organizaciones">
+<meta property="og:description" content="Acompañamos a organizaciones y colectivos a ordenar, ejecutar, financiar y vincular sus proyectos. Desde Buenos Aires, para el sur global.">
+<meta property="og:image" content="cuqu-og.png">
+<meta property="og:locale" content="es_AR">
+<meta property="og:locale:alternate" content="en_US">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Fredoka:wght@300;400;500;600;700&family=DM+Sans:opsz,wght@9..40,400;9..40,500;9..40,700&display=swap">
+<style>
+/* Layout: bandas de ancho completo, cada una con el color de una de las cinco formas del logo */
+:root{
+  --bg:#ffffff;
+  --fg:#121417;
+  --muted:#525a63;
+  --soft:#f1f5f7;
+  --line:#dde3e8;
+  --verde:#147a3f;
+  --azul:#1d8dc7;
+  --naranja:#f05a2b;
+  --amarillo:#ffb30d;
+  --rojo:#e63634;
+  --sobre-color:#ffffff;
+  --tinta-amarilla:#121417;
+  --amarillo-texto:#8f5b00;
+  /* versiones oscuras de cada color para texto chico (contraste AA sobre blanco) */
+  --verde-texto:#147a3f;
+  --azul-texto:#136b9c;
+  --naranja-texto:#c2410c;
+  --rojo-texto:#c42826;
+  --wordmark-filter:none;
+  --font-display:"Fredoka","Varela Round","Nunito",system-ui,sans-serif;
+  --font-body:"DM Sans",system-ui,-apple-system,"Segoe UI",sans-serif;
+  --radius:22px;
+  --h2-seccion:clamp(28px,3.4vw,42px); /* todos los títulos de sección (h2) */
+  --max:1160px;
+}
+@media (prefers-color-scheme: dark){
+  :root:not([data-theme="light"]){
+    --bg:#0e1215; --fg:#eef2f4; --muted:#a3adb6; --soft:#171d22; --line:#2a333a;
+    --verde:#2fa865; --azul:#3aa7e0; --naranja:#ff7347; --amarillo:#ffc23d; --rojo:#ff5754;
+    --sobre-color:#0e1215; --tinta-amarilla:#0e1215; --amarillo-texto:#ffc23d; --wordmark-filter:invert(1);
+    --verde-texto:#2fa865; --azul-texto:#3aa7e0; --naranja-texto:#ff7347; --rojo-texto:#ff5754;
+    color-scheme:dark;
+  }
+}
+:root[data-theme="dark"]{
+  --bg:#0e1215; --fg:#eef2f4; --muted:#a3adb6; --soft:#171d22; --line:#2a333a;
+  --verde:#2fa865; --azul:#3aa7e0; --naranja:#ff7347; --amarillo:#ffc23d; --rojo:#ff5754;
+  --sobre-color:#0e1215; --tinta-amarilla:#0e1215; --amarillo-texto:#ffc23d; --wordmark-filter:invert(1);
+  --verde-texto:#2fa865; --azul-texto:#3aa7e0; --naranja-texto:#ff7347; --rojo-texto:#ff5754;
+  color-scheme:dark;
+}
+
+*{box-sizing:border-box}
+html{scroll-behavior:smooth}
+body{background:var(--bg);color:var(--fg);font-family:var(--font-body);font-size:17px;line-height:1.6}
+h1,h2,h3{font-family:var(--font-display);font-weight:600;line-height:1.08;margin:0;text-wrap:balance;letter-spacing:-.01em}
+p{margin:0}
+a{color:inherit}
+:focus-visible{outline:3px solid var(--azul);outline-offset:3px;border-radius:8px}
+
+.wrap{max-width:var(--max);margin-inline:auto;padding-left:max(16px,env(safe-area-inset-left,0px));padding-right:max(16px,env(safe-area-inset-right,0px))}
+section{padding-block:clamp(44px,5.5vw,76px)}
+.eyebrow{font-family:var(--font-body);font-weight:700;font-size:14px;letter-spacing:.12em;text-transform:uppercase;color:var(--muted)}
+.lead{font-size:clamp(18px,2vw,21px);color:var(--muted);max-width:60ch}
+
+/* Header */
+body::before{content:"";position:fixed;inset:0 0 auto;height:env(safe-area-inset-top,0px);z-index:10;background:var(--bg)}
+header{position:sticky;top:env(safe-area-inset-top,0px);z-index:5;background:color-mix(in srgb,var(--bg) 90%,transparent);backdrop-filter:blur(10px);border-bottom:1px solid var(--line)}
+.nav{display:flex;align-items:center;justify-content:space-between;gap:24px;padding-block:14px}
+.logo{display:flex;align-items:center;gap:10px;text-decoration:none}
+.logo .formas{height:38px;width:auto}
+.logo .texto{height:26px;width:auto;filter:var(--wordmark-filter)}
+.links{display:flex;align-items:center;gap:28px;font-weight:500;font-size:15px}
+.links a{text-decoration:none;color:var(--muted)}
+.links a:hover{color:var(--fg)}
+.btn{display:inline-flex;align-items:center;gap:8px;font-family:var(--font-display);font-weight:600;font-size:17px;text-decoration:none;border-radius:999px;padding:12px 24px;border:2px solid var(--fg);transition:transform .15s ease,background .15s ease,color .15s ease}
+.btn:hover{transform:translateY(-2px)}
+.btn-dark{background:var(--fg);color:var(--bg)}
+.btn-ghost{background:transparent;color:var(--fg)}
+.btn-ghost:hover{background:var(--fg);color:var(--bg)}
+.links .btn{padding:9px 18px;font-size:15px;color:var(--bg)}
+.links{gap:clamp(10px,2.4vw,28px)}
+@media (max-width:860px){.links a:not(.btn){display:none}}
+.nav-right{display:flex;align-items:center;gap:clamp(10px,2vw,22px)}
+.lang{display:inline-flex;border:1.5px solid var(--line);border-radius:999px;padding:3px;gap:2px}
+.lang button{font:inherit;font-family:var(--font-display);font-weight:600;font-size:14px;letter-spacing:.04em;border:0;background:transparent;color:var(--muted);padding:5px 11px;border-radius:999px;cursor:pointer}
+.lang button[aria-pressed="true"]{background:var(--fg);color:var(--bg)}
+.lang button:hover{color:var(--fg)}
+.lang button[aria-pressed="true"]:hover{color:var(--bg)}
+.foot-right{display:flex;align-items:center;gap:16px;min-width:0}
+.foot-right span{min-width:0}
+.social{display:inline-flex;align-items:center;justify-content:center;width:40px;height:40px;border-radius:50%;border:1.5px solid var(--line);color:var(--fg);transition:background .15s ease,color .15s ease,border-color .15s ease}
+.social:hover{background:var(--fg);color:var(--bg);border-color:var(--fg)}
+.btn.btn-line,.links .btn.btn-line{background:transparent;color:var(--fg);font-weight:500;border-width:2px}
+.btn.btn-line:hover,.links .btn.btn-line:hover{background:var(--fg);color:var(--bg)}
+@media (max-width:520px){.links .btn-line{display:none}}
+
+/* Donar */
+.donar{padding-block:0 clamp(44px,5.5vw,76px)}
+.donar-box{display:grid;grid-template-columns:auto 1fr auto;gap:24px 36px;align-items:center;padding:clamp(28px,4vw,44px);border-radius:var(--radius);background:var(--rojo-texto);color:var(--sobre-color)}
+.donar-box svg{width:72px;height:72px;color:var(--sobre-color)}
+.donar-box h2{font-size:var(--h2-seccion);overflow-wrap:break-word}
+.donar-box p{margin-top:10px;max-width:58ch}
+.donar-box .btn{background:var(--sobre-color);border-color:var(--sobre-color);color:var(--rojo-texto)}
+.donar-box .pronto{font-size:14px;margin-top:8px;text-align:center}
+@media (max-width:820px){.donar-box{grid-template-columns:1fr}.donar-box .pronto{text-align:left}}
+
+/* Hero */
+.hero{padding-block:clamp(28px,3.6vw,48px) clamp(24px,3.4vw,44px)}
+.hero-grid{display:grid;grid-template-columns:1.25fr 1fr;gap:48px;align-items:center}
+.hero h1{font-size:clamp(44px,7.4vw,92px);font-weight:600}
+.hero h1 .sub{color:var(--verde)}
+.hero .lead{margin-top:24px}
+.hero .ctas{display:flex;flex-wrap:wrap;gap:12px;margin-top:36px}
+.hero .note{margin-top:20px;font-size:14px;color:var(--muted)}
+.hero-art{position:relative;aspect-ratio:1/1;max-width:100%}
+.hero-art svg{position:absolute;overflow:visible}
+.f1{width:42%;left:2%;top:6%;animation:flota 7s ease-in-out infinite}
+.f2{width:30%;left:58%;top:0;animation:flota 8s ease-in-out infinite .6s}
+.f3{width:22%;left:76%;top:40%;animation:gira 14s linear infinite}
+.f4{width:46%;left:34%;top:50%;animation:gira 30s linear infinite reverse}
+.f5{width:24%;left:0;top:68%;animation:flota 6s ease-in-out infinite 1.2s}
+@keyframes flota{0%,100%{transform:translateY(0)}50%{transform:translateY(-14px)}}
+@keyframes gira{to{transform:rotate(360deg)}}
+@media (max-width:820px){.hero-grid{grid-template-columns:1fr}.hero-art{max-width:380px;width:100%;margin-inline:auto;order:-1}}
+
+
+/* Quiénes */
+.quienes-grid{display:grid;grid-template-columns:1fr 1fr;gap:clamp(32px,6vw,80px);margin-top:20px}
+.quienes-grid h2{font-size:var(--h2-seccion);overflow-wrap:break-word}
+.quienes{background:var(--azul-texto);color:var(--sobre-color)}
+.quienes .eyebrow,.quienes .lead,.quienes .sub-lead,.quienes .dato span,.quienes .dato strong{color:var(--sobre-color)!important}
+.quienes .vm article{background:var(--bg);color:var(--fg)}
+.quienes .lead{margin-top:20px}
+.sub-lead{margin-top:16px;color:var(--muted);max-width:60ch}
+.dato span{max-width:26ch}
+.vm{display:grid;gap:20px;align-content:start}
+.vm article{border-radius:var(--radius);padding:28px;background:var(--soft)}
+.vm h3{font-size:24px;display:flex;align-items:center;gap:10px}
+.vm p{margin-top:10px;color:var(--muted)}
+.datos{display:flex;flex-wrap:wrap;gap:32px;margin-top:36px}
+.dato strong{display:block;font-family:var(--font-display);font-weight:600;font-size:56px;line-height:1;color:var(--azul)}
+.dato span{display:block;margin-top:6px;font-size:15px;color:var(--muted);max-width:22ch}
+@media (max-width:820px){.quienes-grid{grid-template-columns:1fr}}
+
+/* Líneas */
+.lineas{background:var(--soft)}
+.lineas-head{display:flex;flex-direction:column;gap:18px}
+.lineas h2{font-size:var(--h2-seccion);overflow-wrap:break-word}
+.lineas-head .lead{max-width:none}
+.cards{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:18px;margin-top:48px}
+.card{background:var(--bg);border-radius:var(--radius);padding:26px 24px;display:flex;flex-direction:column;gap:12px;border:1px solid var(--line);min-width:0;transition:transform .2s ease,box-shadow .2s ease}
+.card .tag{font-size:13px}
+.card h3{font-size:26px;font-weight:500}
+.card p{font-size:15.5px}
+.card:hover{transform:translateY(-4px);box-shadow:0 18px 40px -24px color-mix(in srgb,var(--fg) 45%,transparent)}
+.card svg{width:48px;height:48px}
+.card .tag{font-weight:700;letter-spacing:.08em;text-transform:uppercase}
+.card p{color:var(--muted)}
+@media (max-width:900px){.cards{grid-template-columns:repeat(2,minmax(0,1fr))}}
+@media (max-width:560px){.cards{grid-template-columns:1fr}}
+
+/* Cómo */
+.como h2{font-size:var(--h2-seccion);overflow-wrap:break-word}
+.modos{display:grid;grid-template-columns:repeat(4,1fr);gap:0;margin-top:48px;border-top:1px solid var(--fg)}
+.modo{padding:28px 24px 8px 0;display:flex;flex-direction:column;gap:10px;min-width:0}
+.modo + .modo{padding-left:24px;border-left:1px solid var(--line)}
+.modo h3{font-size:24px;font-weight:500}
+.modo p{color:var(--muted);font-size:16px}
+.modo .chip{align-self:flex-start;font-size:13px;font-weight:700;letter-spacing:.08em;text-transform:uppercase;padding:4px 10px;border-radius:999px;color:var(--sobre-color);margin-bottom:10px}
+.costos{margin-top:48px;display:flex;flex-wrap:wrap;align-items:center;gap:20px 28px;padding:28px 32px;border-radius:var(--radius);background:var(--amarillo);color:var(--tinta-amarilla)}
+.costos p{font-size:19px;font-weight:500;flex:1 1 380px;min-width:0}
+.costos .btn{border-color:var(--tinta-amarilla);color:var(--tinta-amarilla)}
+.costos .btn:hover{background:var(--tinta-amarilla);color:var(--amarillo)}
+@media (max-width:900px){.modos{grid-template-columns:1fr 1fr}.modo:nth-child(3){padding-left:0;border-left:0}.modo:nth-child(n+3){border-top:1px solid var(--line)}}
+@media (max-width:560px){.modos{grid-template-columns:1fr}.modo,.modo + .modo{padding-left:0;border-left:0}.modo + .modo{border-top:1px solid var(--line)}}
+
+/* Para quiénes */
+.para{background:var(--verde);color:var(--sobre-color);padding-block:clamp(30px,3.6vw,48px)}
+.hero{border-bottom:1px solid var(--line)}
+.para-grid{display:grid;grid-template-columns:1fr 1fr;gap:clamp(32px,6vw,80px)}
+.para h2{font-size:var(--h2-seccion);overflow-wrap:break-word}
+.para .eyebrow{color:inherit}
+.para p.lead{color:inherit;margin-top:20px}
+.chips{display:flex;flex-wrap:wrap;gap:10px;margin-top:18px;padding:0;list-style:none}
+.chips li{padding:8px 16px;border-radius:999px;border:1.5px solid color-mix(in srgb,var(--sobre-color) 55%,transparent);font-weight:500;font-size:15px}
+.para h3{font-size:22px;margin-top:8px}
+.para .bloque + .bloque{margin-top:36px}
+@media (max-width:820px){.para-grid{grid-template-columns:1fr}}
+
+/* Contacto */
+.contacto{text-align:left}
+.contacto-box{display:grid;grid-template-columns:1.3fr 1fr;gap:40px;align-items:center}
+.contacto h2{font-size:var(--h2-seccion);overflow-wrap:break-word}
+.contacto .lead{margin-top:20px}
+.mail{display:flex;flex-direction:column;gap:12px;padding:32px;border-radius:var(--radius);border:2px solid var(--fg)}
+.mail .label{font-size:14px;color:var(--muted)}
+.mail .addr{font-family:var(--font-display);font-size:clamp(22px,2.6vw,30px);font-weight:600;word-break:break-all;user-select:all}
+.mail .row{display:flex;flex-wrap:wrap;gap:10px;margin-top:6px}
+.mail button{font:inherit;cursor:pointer}
+.copiado{font-size:14px;color:var(--verde);min-height:1.4em}
+@media (max-width:820px){.contacto-box{grid-template-columns:1fr}}
+
+footer{border-top:1px solid var(--line);padding-block:32px;font-size:14px;color:var(--muted)}
+.foot{display:flex;flex-wrap:wrap;justify-content:space-between;align-items:center;gap:16px}
+
+@media (prefers-reduced-motion:reduce){*{animation:none!important;transition:none!important}html{scroll-behavior:auto}}
+</style>
+<style>body{margin:0}img{max-width:100%}[hidden]{display:none!important}</style>
+</head>
+<body>
+
+<svg width="0" height="0" style="position:absolute" aria-hidden="true">
+  <defs>
+    <symbol id="trebol" viewBox="0 0 100 100"><g fill="currentColor"><circle cx="50" cy="22" r="20"/><circle cx="50" cy="78" r="20"/><circle cx="22" cy="50" r="20"/><circle cx="78" cy="50" r="20"/><rect x="38" y="38" width="24" height="24"/></g></symbol>
+    <symbol id="pentagono" viewBox="0 0 100 100"><polygon points="50,12 88,40 74,86 26,86 12,40" fill="currentColor" stroke="currentColor" stroke-width="16" stroke-linejoin="round"/></symbol>
+    <symbol id="chispa" viewBox="0 0 100 100"><path fill="currentColor" d="M50 4c7 0 12 6 12 13 0 11 9 21 21 21 7 0 13 5 13 12s-6 12-13 12c-12 0-21 10-21 21 0 7-5 13-12 13s-12-6-12-13c0-11-9-21-21-21C10 62 4 57 4 50s6-12 13-12c12 0 21-10 21-21C38 10 43 4 50 4z"/></symbol>
+    <symbol id="estrella" viewBox="0 0 100 100"><polygon fill="currentColor" stroke="currentColor" stroke-width="4" stroke-linejoin="round" points="50,3 59,21 77,8 75,29 97,30 82,45 96,62 75,64 79,86 59,76 50,97 41,76 21,86 25,64 4,62 18,45 3,30 25,29 23,8 41,21"/></symbol>
+    <symbol id="circulo" viewBox="0 0 100 100"><circle cx="50" cy="50" r="48" fill="currentColor"/></symbol>
+    <!-- Íconos de las líneas de trabajo -->
+    <symbol id="i-obra" viewBox="0 0 100 100"><g fill="currentColor">
+      <rect x="6" y="16" width="42" height="20" rx="6"/><rect x="52" y="16" width="42" height="20" rx="6"/>
+      <rect x="6" y="40" width="19" height="20" rx="6"/><rect x="29" y="40" width="42" height="20" rx="6"/><rect x="75" y="40" width="19" height="20" rx="6"/>
+      <rect x="6" y="64" width="42" height="20" rx="6"/><rect x="52" y="64" width="42" height="20" rx="6"/>
+    </g></symbol>
+    <symbol id="i-andamio" viewBox="0 0 100 100"><g fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round">
+      <path d="M22 8V94M78 8V94" stroke-width="9"/>
+      <path d="M26 40L74 56M26 72L74 88" stroke-width="6"/>
+    </g><g fill="currentColor"><rect x="10" y="24" width="80" height="12" rx="6"/><rect x="10" y="56" width="80" height="12" rx="6"/></g></symbol>
+    <symbol id="i-taller" viewBox="0 0 100 100">
+      <g transform="rotate(-40 50 50)"><path d="M50 30V92" stroke="currentColor" stroke-width="10" stroke-linecap="round"/><rect x="28" y="10" width="44" height="22" rx="7" fill="currentColor"/></g>
+      <g transform="rotate(40 50 50)" fill="none" stroke="currentColor" stroke-linecap="round"><path d="M41 7A17 17 0 1 0 59 7" stroke-width="10"/><path d="M50 40V92" stroke-width="10"/></g>
+    </symbol>
+    <symbol id="i-palanca" viewBox="0 0 100 100">
+      <path d="M8 80L92 46" stroke="currentColor" stroke-width="9" stroke-linecap="round"/>
+      <polygon points="50,68 64,92 36,92" fill="currentColor" stroke="currentColor" stroke-width="6" stroke-linejoin="round"/>
+      <rect x="10" y="52" width="20" height="20" rx="5" fill="currentColor" transform="rotate(-22 20 62)"/>
+      <path d="M84 8V30M76 22L84 30L92 22" fill="none" stroke="currentColor" stroke-width="7" stroke-linecap="round" stroke-linejoin="round"/>
+    </symbol>
+    <symbol id="i-cuadrilla" viewBox="0 0 100 100"><g fill="currentColor">
+      <g opacity=".55"><circle cx="22" cy="40" r="11"/><path d="M4 80A18 18 0 0 1 40 80Z"/><circle cx="78" cy="40" r="11"/><path d="M60 80A18 18 0 0 1 96 80Z"/></g>
+      <circle cx="50" cy="36" r="14"/><path d="M24 88A26 26 0 0 1 76 88Z"/>
+    </g></symbol>
+    <symbol id="i-terreno" viewBox="0 0 100 100">
+      <path fill="currentColor" fill-rule="evenodd" d="M50 4C33 4 20 17 20 34c0 22 30 50 30 50s30-28 30-50C80 17 67 4 50 4zm0 18a12 12 0 1 1 0 24 12 12 0 0 1 0-24z"/>
+      <ellipse cx="50" cy="90" rx="32" ry="6" fill="currentColor" opacity=".45"/>
+    </symbol>
+  </defs>
+</svg>
+
+<header>
+  <div class="wrap nav">
+    <a class="logo" href="#inicio" aria-label="Cuqu">
+      <img class="formas" src="cuqu-formas.png" alt="">
+      <img class="texto" src="cuqu-texto.png" alt="Cuqu">
+    </a>
+    <div class="nav-right">
+      <nav class="links" aria-label="Principal">
+        <a href="#quienes" data-en="About us">Quiénes somos</a>
+        <a href="#lineas" data-en="What we do">Líneas de trabajo</a>
+        <a href="#como" data-en="How we work">Cómo trabajamos</a>
+        <a class="btn btn-line" href="#contacto" data-en="Tell us about your project">Contanos tu proyecto</a>
+      </nav>
+      <div class="lang" role="group" aria-label="Idioma / Language">
+        <button type="button" id="lang-es" data-lang="es" aria-pressed="true">ES</button>
+        <button type="button" id="lang-en" data-lang="en" aria-pressed="false">EN</button>
+      </div>
+    </div>
+  </div>
+</header>
+
+<main id="inicio">
+  <section class="hero">
+    <div class="wrap hero-grid">
+      <div>
+        <p class="eyebrow" data-en="Organizational architecture">Arquitectura de organizaciones</p>
+        <h1 style="margin-top:16px"><span data-en="We strengthen">Fortalecemos a la</span> <span class="sub" data-en="civil society">sociedad civil</span></h1>
+        <p class="lead" data-en="We support organizations and collectives to organize, carry out, fund and connect their projects. And when they need it, we give them legal backing so they can receive funds.">Acompañamos a organizaciones y colectivos a ordenar, ejecutar, financiar y vincular sus proyectos. Y cuando hace falta, los respaldamos legalmente para que puedan recibir fondos.</p>
+        <div class="ctas">
+          <a class="btn btn-line" href="#contacto" data-en="Tell us about your project">Contanos tu proyecto</a>
+          <a class="btn btn-ghost" href="#lineas" data-en="See what we do">Ver qué hacemos</a>
+        </div>
+      </div>
+      <div class="hero-art" aria-hidden="true">
+        <svg class="f1" viewBox="0 0 100 100" style="color:var(--verde)"><use href="#trebol"/></svg>
+        <svg class="f2" viewBox="0 0 100 100" style="color:var(--azul)"><use href="#pentagono"/></svg>
+        <svg class="f3" viewBox="0 0 100 100" style="color:var(--naranja)"><use href="#chispa"/></svg>
+        <svg class="f4" viewBox="0 0 100 100" style="color:var(--amarillo)"><use href="#estrella"/></svg>
+        <svg class="f5" viewBox="0 0 100 100" style="color:var(--rojo)"><use href="#circulo"/></svg>
+      </div>
+    </div>
+  </section>
+
+  <section class="quienes" id="quienes">
+    <div class="wrap">
+      <p class="eyebrow" data-en="About us">Quiénes somos</p>
+      <div class="quienes-grid">
+        <div>
+          <h2 data-en="An open and flexible civil association">Una asociación civil abierta y flexible</h2>
+          <p class="lead" data-en="We are a non-profit civil association, currently being set up. We work from Buenos Aires, for the Global South. Everything we receive goes to sustaining the organization and our work with the groups we support.">Somos una asociación civil sin fines de lucro, en formación. Trabajamos desde Buenos Aires, para el sur global. Todo lo que ingresa se usa para sostener la organización y el trabajo con las organizaciones que acompañamos.</p>
+          <p class="sub-lead" data-en="Our team comes from years of work in LGBTIQ+, gender, climate and human rights organizations. We use artificial intelligence as a working tool, so teams spend less time on paperwork and more on what matters.">Venimos de años de trabajo en organizaciones LGBTIQ+, de género, clima y derechos humanos. Usamos la inteligencia artificial como herramienta de trabajo, para que los equipos dediquen menos tiempo a lo administrativo y más a lo que importa.</p>
+          <div class="datos">
+            <div class="dato"><strong>+10</strong><span data-en="years working in the social sector">años de trabajo en el sector social</span></div>
+            <div class="dato"><strong style="color:var(--naranja-texto)">20</strong><span data-en="years ahead: the horizon we plan every project with">años hacia adelante: la mirada con la que pensamos cada proyecto</span></div>
+          </div>
+        </div>
+        <div class="vm">
+          <article>
+            <h3><svg width="22" height="22" style="color:var(--azul)" aria-hidden="true"><use href="#pentagono"/></svg><span data-en="Vision">Visión</span></h3>
+            <p data-en="A strong, diverse and sustainable civil society, with organizations that shape their future and defend their rights.">Una sociedad civil fuerte, diversa y sostenible, con organizaciones que transforman su futuro y defienden sus derechos.</p>
+          </article>
+          <article>
+            <h3><svg width="22" height="22" style="color:var(--verde)" aria-hidden="true"><use href="#trebol"/></svg><span data-en="Mission">Misión</span></h3>
+            <p data-en="To strengthen civil society by supporting organizations and collectives to organize, carry out, fund and connect their work. And above all, to sustain it over time.">Fortalecer a la sociedad civil acompañando a organizaciones y colectivos para que ordenen, ejecuten, financien y vinculen su trabajo. Y, sobre todo, para que puedan sostenerlo en el tiempo.</p>
+          </article>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <section class="lineas" id="lineas">
+    <div class="wrap">
+      <div class="lineas-head">
+        <div>
+          <p class="eyebrow" data-en="Lines of work">Líneas de trabajo</p>
+          <h2 style="margin-top:14px" data-en="Six tools to build with">Seis herramientas para construir</h2>
+        </div>
+        <p class="lead" data-en="Every organization needs something different. We combine these lines depending on where each project stands.">Cada organización necesita algo distinto. Combinamos estas líneas según el momento de cada proyecto.</p>
+      </div>
+      <div class="cards">
+        <article class="card">
+          <svg style="color:var(--verde)" aria-hidden="true"><use href="#i-obra"/></svg>
+          <span class="tag" style="color:var(--verde-texto)" data-en="Execution">Ejecución</span>
+          <h3 data-en="Build">Obra</h3>
+          <p data-en="We organize, carry out and connect projects alongside the organization, under a collaboration agreement.">Ordenamos, ejecutamos y vinculamos proyectos junto a la organización, con un convenio de colaboración.</p>
+        </article>
+        <article class="card">
+          <svg style="color:var(--amarillo)" aria-hidden="true"><use href="#i-palanca"/></svg>
+          <span class="tag" style="color:var(--amarillo-texto)" data-en="Funding">Financiamiento</span>
+          <h3 data-en="Lever">Palanca</h3>
+          <p data-en="We design and submit projects to national and international funding sources.">Diseñamos y presentamos proyectos a fuentes de financiamiento nacionales e internacionales.</p>
+        </article>
+        <article class="card">
+          <svg style="color:var(--naranja)" aria-hidden="true"><use href="#i-taller"/></svg>
+          <span class="tag" style="color:var(--naranja-texto)" data-en="Training">Formación</span>
+          <h3 data-en="Workshop">Taller</h3>
+          <p data-en="Workshops and learning spaces on management, fundraising, administration, communication and tools.">Talleres y espacios de aprendizaje sobre gestión, fundraising, administración, comunicación y herramientas.</p>
+        </article>
+        <article class="card">
+          <svg style="color:var(--rojo)" aria-hidden="true"><use href="#i-cuadrilla"/></svg>
+          <span class="tag" style="color:var(--rojo-texto)" data-en="Professional network">Red de profesionales</span>
+          <h3 data-en="Crew">Cuadrilla</h3>
+          <p data-en="A network of socially committed professionals from different fields who join each project.">Una red de profesionales de distintas disciplinas, con compromiso social, que se suman a cada proyecto.</p>
+        </article>
+        <article class="card">
+          <svg style="color:var(--azul)" aria-hidden="true"><use href="#i-andamio"/></svg>
+          <span class="tag" style="color:var(--azul-texto)" data-en="Institutional backing">Respaldo</span>
+          <h3 data-en="Scaffold">Andamio</h3>
+          <p data-en="We lend our legal and administrative structure so organizations and collectives can receive and report on funds, with clear rules.">Prestamos nuestra estructura legal y administrativa para que organizaciones y colectivos reciban y rindan fondos, con reglas claras.</p>
+        </article>
+        <article class="card">
+          <svg style="color:var(--verde)" aria-hidden="true"><use href="#i-terreno"/></svg>
+          <span class="tag" style="color:var(--verde-texto)" data-en="Our own projects">Proyectos propios</span>
+          <h3 data-en="Ground">Terreno</h3>
+          <p data-en="Projects of our own that we carry out on the ground, together with the communities.">Proyectos propios que ejecutamos en territorio, junto a las comunidades.</p>
+        </article>
+      </div>
+    </div>
+  </section>
+
+  <section class="como" id="como">
+    <div class="wrap">
+      <p class="eyebrow" data-en="How we work">Cómo trabajamos</p>
+      <h2 style="margin-top:14px" data-en="We adapt to what each project needs">Nos adaptamos a lo que necesita cada proyecto</h2>
+      <div class="modos">
+        <div class="modo">
+          <span class="chip" style="background:var(--azul-texto)" data-en="To start">Para empezar</span>
+          <h3 data-en="Assessment">Diagnóstico</h3>
+          <p data-en="We look at where the organization or project stands (team, processes, finances and communication) and deliver a report with an improvement plan.">Relevamos cómo está la organización o el proyecto (equipo, procesos, finanzas y comunicación) y entregamos un informe con un plan de mejora.</p>
+        </div>
+        <div class="modo">
+          <span class="chip" style="background:var(--verde-texto)" data-en="Over a period">Durante un período</span>
+          <h3 data-en="Support">Acompañamiento</h3>
+          <p data-en="We work alongside the organization to organize, carry out and connect.">Trabajamos junto a la organización para ordenar, ejecutar y vincular.</p>
+        </div>
+        <div class="modo">
+          <span class="chip" style="background:var(--naranja-texto)" data-en="Follow-up">Seguimiento</span>
+          <h3 data-en="Monitoring">Monitoreo</h3>
+          <p data-en="Regular follow-up of a project, with indicators and reports for its funders.">Seguimiento periódico de un proyecto, con indicadores e informes para quienes lo financian.</p>
+        </div>
+        <div class="modo">
+          <span class="chip" style="background:var(--rojo-texto)" data-en="Tailored">A medida</span>
+          <h3 data-en="Consulting">Consultoría</h3>
+          <p data-en="A strategic plan, a budget or a funding application, with professionals from our Crew.">Un plan estratégico, un presupuesto o una presentación a un fondo, con perfiles de la Cuadrilla.</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <section class="para" id="para-quienes">
+    <div class="wrap para-grid">
+      <div>
+        <p class="eyebrow" data-en="Who it's for">Para quiénes</p>
+        <h2 style="margin-top:14px" data-en="For those already changing their communities">Para quienes ya están transformando su comunidad</h2>
+        <p class="lead" data-en="We aren't defined by a territory. We work with organizations and collectives in their own contexts and communities.">No nos define un territorio. Trabajamos con las organizaciones y colectivos en sus propios contextos y comunidades.</p>
+      </div>
+      <div>
+        <div class="bloque">
+          <h3 data-en="Organizations">Organizaciones</h3>
+          <ul class="chips">
+            <li data-en="Civil associations">Asociaciones civiles</li><li data-en="Foundations">Fundaciones</li><li data-en="Collectives">Colectivos</li><li data-en="Movements">Movimientos</li><li data-en="Cooperatives">Cooperativas</li><li data-en="Networks">Redes</li><li data-en="Activists">Activistas</li><li data-en="Social enterprises">Emprendimientos sociales</li>
+          </ul>
+        </div>
+        <div class="bloque">
+          <h3 data-en="Issues">Temas</h3>
+          <ul class="chips">
+            <li data-en="Climate">Clima</li><li data-en="Gender">Género</li><li data-en="Education">Educación</li><li data-en="Technology">Tecnología</li><li data-en="Justice">Justicia</li><li data-en="Housing">Vivienda</li><li data-en="Culture">Cultura</li><li data-en="Work">Trabajo</li><li data-en="Health">Salud</li><li data-en="Migration">Migración</li>
+          </ul>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <section class="contacto" id="contacto">
+    <div class="wrap contacto-box">
+      <div>
+        <p class="eyebrow" data-en="Contact">Contacto</p>
+        <h2 style="margin-top:14px" data-en="Have a project? Let's build it together">¿Tenés un proyecto? Armémoslo juntos</h2>
+        <p class="lead" data-en="Tell us where your organization or collective is at and what you need. We'll get back to you to figure out where to start.">Contanos en qué está tu organización o tu colectivo y qué necesitás. Te respondemos para ver por dónde empezar.</p>
+      </div>
+      <div class="mail">
+        <span class="label" data-en="Write to us at">Escribinos a</span>
+        <!-- PENDIENTE: hola@cuqu.org no está verificado (cuqu.org no tiene registros MX). Reemplazar aquí y en los dos mailto de "Abrir correo". -->
+        <span class="addr" id="mail-addr">hola@cuqu.org</span>
+        <div class="row">
+          <button class="btn btn-dark" type="button" id="copiar" data-en="Copy email">Copiar mail</button>
+          <a class="btn btn-ghost" id="abrir-correo" href="mailto:hola@cuqu.org?subject=Quiero%20contarles%20mi%20proyecto&amp;body=Hola%2C%20equipo%20de%20Cuqu%3A%0D%0A%0D%0ANombre%20de%20la%20organizaci%C3%B3n%20o%20colectivo%3A%20%0D%0A%0D%0AQu%C3%A9%20necesitamos%3A%20%0D%0A%0D%0APlazos%3A%20%0D%0A" data-href-en="mailto:hola@cuqu.org?subject=I%27d%20like%20to%20tell%20you%20about%20my%20project&amp;body=Hello%20Cuqu%20team%2C%0D%0A%0D%0AName%20of%20the%20organization%20or%20collective%3A%20%0D%0A%0D%0AWhat%20we%20need%3A%20%0D%0A%0D%0ATimeline%3A%20%0D%0A" data-en="Open email">Abrir correo</a>
+        </div>
+        <span class="copiado" id="copiado" aria-live="polite"></span>
+      </div>
+    </div>
+  </section>
+
+  <section class="donar" id="donar">
+    <div class="wrap">
+      <div class="donar-box">
+        <svg viewBox="0 0 100 100" aria-hidden="true"><path fill="currentColor" d="M50 88C20 68 6 52 6 33 6 19 17 9 30 9c9 0 16 5 20 12 4-7 11-12 20-12 13 0 24 10 24 24 0 19-14 35-44 55z"/></svg>
+        <div>
+          <h2 data-en="Want to support us? Write to us">Si querés apoyar, escribinos</h2>
+          <p data-en="Contributions sustain free or reduced-cost support, depending on the case, for organizations and collectives with fewer resources.">Los aportes sostienen el acompañamiento gratuito o a costo reducido, según el caso, para organizaciones y colectivos con menos recursos.</p>
+        </div>
+        <div>
+          <a class="btn" href="#contacto" data-en="Write to us">Escribinos</a>
+          <p class="pronto" data-en="Online donations coming soon.">Muy pronto, donaciones online.</p>
+        </div>
+      </div>
+    </div>
+  </section>
+</main>
+
+<footer>
+  <div class="wrap foot">
+    <a class="logo" href="#inicio" aria-label="Cuqu">
+      <img class="formas" src="cuqu-formas.png" alt="" style="height:30px">
+      <img class="texto" src="cuqu-texto.png" alt="Cuqu" style="height:20px">
+    </a>
+    <div class="foot-right">
+      <span data-en="Cultura que Une Asociación Civil (being set up) · Buenos Aires, Argentina · 2026">Cultura que Une Asociación Civil (en formación) · Buenos Aires, Argentina · 2026</span>
+      <a class="social" href="https://www.instagram.com/cuqulab/" target="_blank" rel="noopener" aria-label="Instagram @cuqulab">
+        <svg viewBox="0 0 24 24" width="22" height="22" aria-hidden="true"><rect x="3" y="3" width="18" height="18" rx="5.5" fill="none" stroke="currentColor" stroke-width="2"/><circle cx="12" cy="12" r="4.2" fill="none" stroke="currentColor" stroke-width="2"/><circle cx="17.3" cy="6.7" r="1.3" fill="currentColor"/></svg>
+      </a>
+    </div>
+  </div>
+</footer>
+
+<script>
+  var MSG = {
+    es: { copied: 'Mail copiado.', selected: 'Mail seleccionado. Copialo con Ctrl+C.', title: 'Cuqu — Arquitectura de organizaciones' },
+    en: { copied: 'Email copied.', selected: 'Email selected. Copy it with Ctrl+C.', title: 'Cuqu — Organizational architecture' }
+  };
+  var lang = 'es';
+
+  function setLang(next) {
+    lang = next === 'en' ? 'en' : 'es';
+    document.querySelectorAll('[data-en]').forEach(function (el) {
+      if (el.dataset.es === undefined) el.dataset.es = el.textContent;
+      el.textContent = lang === 'en' ? el.dataset.en : el.dataset.es;
+    });
+    document.querySelectorAll('[data-href-en]').forEach(function (el) {
+      if (el.dataset.hrefEs === undefined) el.dataset.hrefEs = el.getAttribute('href');
+      el.setAttribute('href', lang === 'en' ? el.dataset.hrefEn : el.dataset.hrefEs);
+    });
+    document.documentElement.lang = lang;
+    document.title = MSG[lang].title;
+    document.getElementById('lang-es').setAttribute('aria-pressed', String(lang === 'es'));
+    document.getElementById('lang-en').setAttribute('aria-pressed', String(lang === 'en'));
+    document.getElementById('copiado').textContent = '';
+    try { localStorage.setItem('cuqu-lang', lang); } catch (e) {}
+  }
+
+  document.querySelectorAll('.lang button').forEach(function (b) {
+    b.addEventListener('click', function () { setLang(b.dataset.lang); });
+  });
+
+  var saved = null;
+  try { saved = localStorage.getItem('cuqu-lang'); } catch (e) {}
+  if (location.hash === '#en') saved = 'en';
+  if (saved === 'en') setLang('en');
+
+  document.getElementById('copiar').addEventListener('click', function () {
+    var addr = document.getElementById('mail-addr').textContent.trim();
+    var out = document.getElementById('copiado');
+    function fallback() {
+      var r = document.createRange(); r.selectNodeContents(document.getElementById('mail-addr'));
+      var s = getSelection(); s.removeAllRanges(); s.addRange(r);
+      out.textContent = MSG[lang].selected;
+    }
+    try {
+      navigator.clipboard.writeText(addr).then(function () { out.textContent = MSG[lang].copied; }, fallback);
+    } catch (e) { fallback(); }
+  });
+</script>
+
+</body>
+</html>
