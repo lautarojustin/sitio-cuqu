@@ -67,11 +67,12 @@ header{position:sticky;top:env(safe-area-inset-top,0px);z-index:5;background:col
 @media (min-width:821px) and (prefers-reduced-motion:no-preference){
   .formas-vivas .lf1{animation:logo-flota 7s ease-in-out infinite}
   .formas-vivas .lf2{animation:logo-flota 8s ease-in-out infinite .6s}
-  .formas-vivas .lf3{animation:gira 14s linear infinite}
-  .formas-vivas .lf4{animation:gira 30s linear infinite reverse}
+  .formas-vivas .lf3{animation:logo-mece 9s ease-in-out infinite}
+  .formas-vivas .lf4{animation:gira 60s linear infinite reverse}
   .formas-vivas .lf5{animation:logo-flota 6s ease-in-out infinite 1.2s}
 }
-@keyframes logo-flota{0%,100%{transform:translateY(0)}50%{transform:translateY(-16px)}}
+@keyframes logo-flota{0%,100%{transform:translateY(0)}50%{transform:translateY(-7px)}}
+@keyframes logo-mece{0%,100%{transform:rotate(0)}50%{transform:rotate(25deg)}}
 .logo .texto{height:26px;width:auto;filter:var(--wordmark-filter)}
 .links{display:flex;align-items:center;gap:28px;font-weight:500;font-size:15px}
 .links a{text-decoration:none;color:var(--muted)}
