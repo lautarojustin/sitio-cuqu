@@ -8,10 +8,10 @@
 <link rel="icon" type="image/png" sizes="32x32" href="favicon-32.png">
 <link rel="icon" type="image/png" sizes="512x512" href="favicon-512.png">
 <link rel="apple-touch-icon" href="apple-touch-icon.png">
-<meta name="description" content="Cuqu acompaña a organizaciones y colectivos a ordenar, ejecutar, financiar y vincular sus proyectos. Desde Buenos Aires, para el sur global.">
+<meta name="description" content="Cuqu acompaña a organizaciones y colectivos a diseñar, ordenar, ejecutar, financiar y gestionar sus proyectos. Desde Buenos Aires, para el sur global.">
 <meta property="og:type" content="website">
 <meta property="og:title" content="Cuqu — Arquitectura de organizaciones">
-<meta property="og:description" content="Acompañamos a organizaciones y colectivos a ordenar, ejecutar, financiar y vincular sus proyectos. Desde Buenos Aires, para el sur global.">
+<meta property="og:description" content="Acompañamos a organizaciones y colectivos a diseñar, ordenar, ejecutar, financiar y gestionar sus proyectos. Desde Buenos Aires, para el sur global.">
 <meta property="og:image" content="cuqu-og.png">
 <meta property="og:locale" content="es_AR">
 <meta property="og:locale:alternate" content="en_US">
@@ -104,7 +104,7 @@ header{position:sticky;top:env(safe-area-inset-top,0px);z-index:5;background:col
 .foot-right span{min-width:0}
 .social{display:inline-flex;align-items:center;justify-content:center;width:40px;height:40px;border-radius:50%;border:1.5px solid var(--line);color:var(--fg);transition:background .15s ease,color .15s ease,border-color .15s ease}
 .social:hover{background:var(--fg);color:var(--bg);border-color:var(--fg)}
-.btn.btn-line,.links .btn.btn-line{background:transparent;color:var(--fg);font-weight:500;border-width:2px}
+.btn.btn-line,.links .btn.btn-line{background:transparent;color:var(--fg);border-width:2px}
 .btn.btn-line:hover,.links .btn.btn-line:hover{background:var(--fg);color:var(--bg)}
 @media (max-width:520px){.links .btn-line{display:none}}
 
@@ -136,7 +136,7 @@ header{position:sticky;top:env(safe-area-inset-top,0px);z-index:5;background:col
 @keyframes flota{0%,100%{transform:translateY(0)}50%{transform:translateY(-14px)}}
 @keyframes gira{to{transform:rotate(360deg)}}
 @media (max-width:820px){.hero-grid{grid-template-columns:1fr}.hero-art{max-width:380px;width:100%;margin-inline:auto;order:-1}}
-@media (max-width:520px){.hero-art{max-width:230px}}
+@media (max-width:600px){.hero-art{display:none}}
 
 
 /* Quiénes */
@@ -214,6 +214,7 @@ header{position:sticky;top:env(safe-area-inset-top,0px);z-index:5;background:col
 .mail button{font:inherit;cursor:pointer}
 .copiado{font-size:14px;color:var(--verde);min-height:1.4em}
 @media (max-width:820px){.contacto-box{grid-template-columns:1fr}}
+@media (max-width:600px){#abrir-correo{display:none}}
 
 footer{border-top:1px solid var(--line);padding-block:32px;font-size:14px;color:var(--muted)}
 .foot{display:flex;flex-wrap:wrap;justify-content:space-between;align-items:center;gap:16px}
@@ -289,7 +290,7 @@ footer{border-top:1px solid var(--line);padding-block:32px;font-size:14px;color:
       <div>
         <p class="eyebrow" data-en="Organizational architecture">Arquitectura de organizaciones</p>
         <h1 style="margin-top:16px"><span data-en="We strengthen">Fortalecemos a la</span> <span class="sub" data-en="civil society">sociedad civil</span></h1>
-        <p class="lead" data-en="We support organizations and collectives to organize, carry out, fund and connect their projects. And when they need it, we give them legal backing so they can receive funds.">Acompañamos a organizaciones y colectivos a ordenar, ejecutar, financiar y vincular sus proyectos. Y cuando hace falta, los respaldamos legalmente para que puedan recibir fondos.</p>
+        <p class="lead" data-en="We support organizations and collectives to design, organize, carry out, fund and manage their projects.">Acompañamos a organizaciones y colectivos a diseñar, ordenar, ejecutar, financiar y gestionar sus proyectos.</p>
         <div class="ctas">
           <a class="btn btn-line" href="#contacto" data-en="Tell us about your project">Contanos tu proyecto</a>
           <a class="btn btn-ghost" href="#lineas" data-en="See what we do">Ver qué hacemos</a>
@@ -352,31 +353,31 @@ footer{border-top:1px solid var(--line);padding-block:32px;font-size:14px;color:
           <svg style="color:var(--amarillo)" aria-hidden="true"><use href="#i-palanca"/></svg>
           <span class="tag" style="color:var(--amarillo-texto)" data-en="Funding">Financiamiento</span>
           <h3 data-en="Lever">Palanca</h3>
-          <p data-en="We design and submit projects to national and international funding sources.">Diseñamos y presentamos proyectos a fuentes de financiamiento nacionales e internacionales.</p>
+          <p data-en="We support you in designing and submitting projects to national and international funding sources.">Te acompañamos en el diseño y la presentación de proyectos a fuentes de financiamiento nacionales e internacionales.</p>
         </article>
         <article class="card">
           <svg style="color:var(--naranja)" aria-hidden="true"><use href="#i-taller"/></svg>
           <span class="tag" style="color:var(--naranja-texto)" data-en="Training">Formación</span>
           <h3 data-en="Workshop">Taller</h3>
-          <p data-en="Workshops and learning spaces on management, fundraising, administration, communication and tools.">Talleres y espacios de aprendizaje sobre gestión, fundraising, administración, comunicación y herramientas.</p>
+          <p data-en="Workshops and learning spaces on AI, management, fundraising, administration, communication and tools.">Talleres y espacios de aprendizaje sobre IA, gestión, fundraising, administración, comunicación y herramientas.</p>
         </article>
         <article class="card">
           <svg style="color:var(--rojo)" aria-hidden="true"><use href="#i-cuadrilla"/></svg>
           <span class="tag" style="color:var(--rojo-texto)" data-en="Professional network">Red de profesionales</span>
           <h3 data-en="Crew">Cuadrilla</h3>
-          <p data-en="A network of socially committed professionals from different fields who join each project.">Una red de profesionales de distintas disciplinas, con compromiso social, que se suman a cada proyecto.</p>
+          <p data-en="We connect you with a network of socially committed professionals from different fields who can join your project.">Te conectamos con una red de profesionales de distintas disciplinas, con compromiso social, que se sumen a tu proyecto.</p>
         </article>
         <article class="card">
           <svg style="color:var(--azul)" aria-hidden="true"><use href="#i-andamio"/></svg>
           <span class="tag" style="color:var(--azul-texto)" data-en="Institutional backing">Respaldo</span>
           <h3 data-en="Scaffold">Andamio</h3>
-          <p data-en="We lend our legal and administrative structure so organizations and collectives can receive and report on funds, with clear rules.">Prestamos nuestra estructura legal y administrativa para que organizaciones y colectivos reciban y rindan fondos, con reglas claras.</p>
+          <p data-en="We support you with our legal and administrative structure so your organization or collective can receive and report on funds.">Te acompañamos con nuestra estructura legal y administrativa para que tu organización o colectivo reciba y rinda fondos.</p>
         </article>
         <article class="card">
           <svg style="color:var(--verde)" aria-hidden="true"><use href="#i-terreno"/></svg>
-          <span class="tag" style="color:var(--verde-texto)" data-en="Our own projects">Proyectos propios</span>
+          <span class="tag" style="color:var(--verde-texto)" data-en="Joint projects">Proyectos en conjunto</span>
           <h3 data-en="Ground">Terreno</h3>
-          <p data-en="Projects of our own that we carry out on the ground, together with the communities.">Proyectos propios que ejecutamos en territorio, junto a las comunidades.</p>
+          <p data-en="We develop projects together with your community: we plan them and carry them out side by side.">Desarrollamos proyectos junto a tu comunidad: los pensamos y los llevamos adelante en conjunto.</p>
         </article>
       </div>
     </div>
@@ -415,7 +416,7 @@ footer{border-top:1px solid var(--line);padding-block:32px;font-size:14px;color:
     <div class="wrap para-grid">
       <div>
         <p class="eyebrow" data-en="Who it's for">Para quiénes</p>
-        <h2 style="margin-top:14px" data-en="For those already changing their communities">Para quienes ya están transformando su comunidad</h2>
+        <h2 style="margin-top:14px" data-en="For those who build community">Para quienes construyen comunidad</h2>
         <p class="lead" data-en="We aren't defined by a territory. We work with organizations and collectives in their own contexts and communities.">No nos define un territorio. Trabajamos con las organizaciones y colectivos en sus propios contextos y comunidades.</p>
       </div>
       <div>
@@ -460,12 +461,11 @@ footer{border-top:1px solid var(--line);padding-block:32px;font-size:14px;color:
       <div class="donar-box">
         <svg viewBox="0 0 100 100" aria-hidden="true"><path fill="currentColor" d="M50 88C20 68 6 52 6 33 6 19 17 9 30 9c9 0 16 5 20 12 4-7 11-12 20-12 13 0 24 10 24 24 0 19-14 35-44 55z"/></svg>
         <div>
-          <h2 data-en="Want to support us? Write to us">Si querés apoyar, escribinos</h2>
-          <p data-en="Contributions sustain free or reduced-cost support, depending on the case, for organizations and collectives with fewer resources.">Los aportes sostienen el acompañamiento gratuito o a costo reducido, según el caso, para organizaciones y colectivos con menos recursos.</p>
+          <h2 data-en="Want to support us? Write to us">Si querés apoyarnos, escribinos</h2>
+          <p data-en="Contributions sustain free and/or reduced-cost support for organizations and collectives with fewer resources.">Los aportes sostienen el acompañamiento gratuito y/o a costo reducido para organizaciones y colectivos con menos recursos.</p>
         </div>
         <div>
           <a class="btn" href="#contacto" data-en="Write to us">Escribinos</a>
-          <p class="pronto" data-en="Online donations coming soon.">Muy pronto, donaciones online.</p>
         </div>
       </div>
     </div>
@@ -479,7 +479,7 @@ footer{border-top:1px solid var(--line);padding-block:32px;font-size:14px;color:
       <img class="texto" src="cuqu-texto.png" alt="Cuqu" style="height:20px">
     </a>
     <div class="foot-right">
-      <span data-en="Cultura que Une Asociación Civil (being set up) · Buenos Aires, Argentina · 2026">Cultura que Une Asociación Civil (en formación) · Buenos Aires, Argentina · 2026</span>
+      <span data-en="Cultura que Une Asociación Civil (being set up) · Autonomous City of Buenos Aires · 2026">Cultura que Une Asociación Civil (en formación) · Ciudad Autónoma de Buenos Aires · 2026</span>
       <a class="social" href="https://www.instagram.com/cuqulab/" target="_blank" rel="noopener" aria-label="Instagram @cuqulab">
         <svg viewBox="0 0 24 24" width="22" height="22" aria-hidden="true"><rect x="3" y="3" width="18" height="18" rx="5.5" fill="none" stroke="currentColor" stroke-width="2"/><circle cx="12" cy="12" r="4.2" fill="none" stroke="currentColor" stroke-width="2"/><circle cx="17.3" cy="6.7" r="1.3" fill="currentColor"/></svg>
       </a>
