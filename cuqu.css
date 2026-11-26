@@ -141,21 +141,21 @@ header{position:sticky;top:env(safe-area-inset-top,0px);z-index:5;background:col
 
 /* Equipo */
 section[id]{scroll-margin-top:72px}
-.equipo{padding-top:clamp(32px,4vw,56px)}
-.equipo h1{font-size:clamp(36px,5vw,64px);margin-top:14px}
-.equipo .lead{margin-top:18px}
-.personas{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:20px;margin-top:40px}
-.persona{border:1px solid var(--line);border-radius:var(--radius);overflow:hidden;display:flex;flex-direction:column;min-width:0;background:var(--bg)}
+.equipo{padding-block:clamp(32px,4vw,56px) clamp(32px,3.4vw,44px)}
+.equipo h1{font-size:var(--h2-seccion);margin-top:14px;overflow-wrap:break-word}
+.personas{display:grid;grid-template-columns:repeat(6,minmax(0,1fr));gap:14px;margin-top:32px}
+.persona{border:1px solid var(--line);border-radius:18px;overflow:hidden;display:flex;flex-direction:column;min-width:0;background:var(--bg)}
 /* Foto: para reemplazar la silueta, poner <img src="equipo/nombre.jpg" alt="Nombre"> en lugar del <svg> */
 .foto{aspect-ratio:1/1;background:color-mix(in srgb,var(--c) 16%,var(--bg));color:var(--c);display:flex;align-items:flex-end;justify-content:center;overflow:hidden}
 .foto svg{width:78%;height:auto;opacity:.55;display:block}
 .foto img{width:100%;height:100%;object-fit:cover;display:block}
-.persona-txt{padding:20px 22px 24px;display:flex;flex-direction:column;gap:4px}
-.persona h2{font-family:var(--font-display);font-size:24px;font-weight:500;letter-spacing:-.01em;line-height:1.15}
-.persona .rol{font-size:13px;font-weight:700;letter-spacing:.08em;text-transform:uppercase;color:var(--c)}
-.persona .bio{margin-top:8px;color:var(--muted);font-size:15.5px}
-@media (max-width:900px){.personas{grid-template-columns:repeat(2,minmax(0,1fr))}}
-@media (max-width:560px){.personas{grid-template-columns:1fr;margin-top:28px}.foto{aspect-ratio:4/3}.foto svg{width:52%}}
+.persona-txt{padding:14px 16px 18px;display:flex;flex-direction:column;gap:3px;min-width:0}
+.persona h2{font-family:var(--font-display);font-size:19px;font-weight:500;letter-spacing:-.01em;line-height:1.15}
+.persona .rol{font-size:12px;font-weight:700;letter-spacing:.08em;text-transform:uppercase;color:var(--c)}
+.persona .bio{margin-top:6px;color:var(--muted);font-size:14px;line-height:1.5}
+@media (max-width:1000px){.personas{grid-template-columns:repeat(3,minmax(0,1fr))}}
+/* Celular: tarjetas horizontales, foto chica a la izquierda */
+@media (max-width:600px){.personas{grid-template-columns:1fr;gap:12px;margin-top:24px}.persona{flex-direction:row;align-items:flex-start;border-radius:16px}.foto{flex:none;width:92px;aspect-ratio:1/1;border-radius:14px;margin:12px 0 12px 12px}.foto svg{width:80%}.persona-txt{padding:12px 14px 14px}.persona h2{font-size:18px}}
 
 /* Líneas */
 .lineas{background:var(--soft)}
