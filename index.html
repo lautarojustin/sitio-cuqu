@@ -202,9 +202,10 @@ header{position:sticky;top:env(safe-area-inset-top,0px);z-index:5;background:col
 /* Para quiénes */
 .para{background:var(--verde);color:var(--sobre-color);padding-block:clamp(30px,3.6vw,48px)}
 .hero{border-bottom:1px solid var(--line)}
-.para-grid{display:grid;grid-template-columns:1fr 1fr;gap:24px clamp(32px,6vw,80px);align-items:center}
+.para-grid{display:grid;grid-template-columns:1fr 1fr;gap:24px clamp(32px,6vw,80px);align-items:start}
 .para .chips{margin-top:0}
-.temas{background:var(--naranja-texto)}
+.temas{background:var(--amarillo);color:var(--tinta-amarilla)}
+.temas .chips li{border-color:color-mix(in srgb,var(--tinta-amarilla) 45%,transparent)}
 .para h2{font-size:var(--h2-seccion);overflow-wrap:break-word}
 .para .eyebrow{color:inherit}
 .para p.lead{color:inherit;margin-top:20px}
@@ -292,7 +293,7 @@ footer{border-top:1px solid var(--line);padding-block:28px 18px;color:var(--mute
     <div class="nav-right">
       <nav class="links" aria-label="Principal">
         <a href="#quienes" data-en="About us">Quiénes somos</a>
-        <a href="#lineas" data-en="What we do">Líneas de trabajo</a>
+        <a href="#lineas" data-en="Ways we work">Modalidades de trabajo</a>
         <a href="#como" data-en="How we work">Cómo trabajamos</a>
         <a class="btn btn-line" href="#contacto" data-en="Tell us about your project">Contanos tu proyecto</a>
       </nav>
@@ -354,10 +355,10 @@ footer{border-top:1px solid var(--line);padding-block:28px 18px;color:var(--mute
     <div class="wrap">
       <div class="lineas-head">
         <div>
-          <p class="eyebrow" data-en="Lines of work">Líneas de trabajo</p>
+          <p class="eyebrow" data-en="Ways we work">Modalidades de trabajo</p>
           <h2 style="margin-top:14px" data-en="Six tools to build with">Seis herramientas para construir</h2>
         </div>
-        <p class="lead" data-en="Every organization needs something different, so we combine these lines depending on where each project stands.">Cada organización necesita algo distinto, por eso combinamos estas líneas según el momento de cada proyecto.</p>
+        <p class="lead" data-en="Every organization needs something different, so we combine these approaches depending on where each project stands.">Cada organización necesita algo distinto, por eso combinamos estas modalidades según el momento de cada proyecto.</p>
       </div>
       <div class="cards">
         <article class="card">
@@ -444,7 +445,7 @@ footer{border-top:1px solid var(--line);padding-block:28px 18px;color:var(--mute
   <section class="para temas" id="temas">
     <div class="wrap para-grid">
       <div>
-        <p class="eyebrow" data-en="What we work on">En qué trabajamos</p>
+        <p class="eyebrow" data-en="Thematic areas">Líneas temáticas</p>
         <h2 style="margin-top:14px" data-en="Issues that move us">Temas que nos mueven</h2>
       </div>
       <ul class="chips">
@@ -506,7 +507,7 @@ footer{border-top:1px solid var(--line);padding-block:28px 18px;color:var(--mute
         <h2 id="foot-cuqu" style="color:var(--verde-texto)">Cuqu</h2>
         <ul>
           <li><a href="#quienes" data-en="About us">Quiénes somos</a></li>
-          <li><a href="#lineas" data-en="Lines of work">Líneas de trabajo</a></li>
+          <li><a href="#lineas" data-en="Ways we work">Modalidades de trabajo</a></li>
           <li><a href="#como" data-en="How we work">Cómo trabajamos</a></li>
           <li><a href="#para-quienes" data-en="Who it's for">Para quiénes</a></li>
         </ul>
